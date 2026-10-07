@@ -48,38 +48,94 @@ const eventos = [
 
 
 const PRECIO_BAJO = 10;
-const PLAZAS_MUCHAS = 100;
 
-console.log("--- LISTADO DE EVENTOS ---");
+// 1. Listar todos
+function listarTodos(coleccion) {
 
-for (const evento of eventos) {
+    console.log("--- LISTADO DE EVENTOS ---");
 
-    const etiqueta = evento.precio <= PRECIO_BAJO
-        ? "económico"
-        : "premium";
+    for (const evento of coleccion) {
 
-    console.log(`${evento.id}. ${evento.nombre} - ${etiqueta}`);
-}
+        const etiqueta =
+            evento.precio <= PRECIO_BAJO
+                ? "económico"
+                : "premium";
 
-console.log("\n--- EVENTOS ECONÓMICOS Y CON MUCHAS PLAZAS ---");
-
-let encontrados = 0;
-
-for (let i = 0; i < eventos.length; i++) {
-
-    const evento = eventos[i];
-
-    if (
-        evento.precio <= PRECIO_BAJO &&
-        evento.plazas >= PLAZAS_MUCHAS
-    ) {
-
-        console.log(
-            `${evento.nombre} - ${evento.precio}€ - ${evento.plazas} plazas`
-        );
-
-        encontrados++;
+        console.log(`${evento.id}. ${evento.nombre} - ${etiqueta}`);
     }
 }
 
-console.log(`${encontrados} de ${eventos.length} eventos`);
+// 2. Filtrar
+function filtrarEventos(coleccion, limite) {
+
+    let encontrados = 0;
+
+    console.log(`--- EVENTOS CON PRECIO <= ${limite}€ ---`);
+
+    for (let i = 0; i < coleccion.length; i++) {
+
+        const evento = coleccion[i];
+
+        if (
+            evento.precio <= limite &&
+            evento.plazas >= 100
+        ) {
+            console.log(
+                `${evento.nombre} - ${evento.precio}€ - ${evento.plazas} plazas`
+            );
+
+            encontrados++;
+        }
+    }
+
+    return encontrados;
+}
+
+// 3. Contar por categoría
+function contarPorCategoria(coleccion) {
+
+    let musica = 0;
+    let cultura = 0;
+    let deporte = 0;
+    let formacion = 0;
+
+    for (const evento of coleccion) {
+
+        switch (evento.categoria) {
+
+            case "Música":
+                musica++;
+                break;
+
+            case "Cultura":
+                cultura++;
+                break;
+
+            case "Deporte":
+                deporte++;
+                break;
+
+            case "Formación":
+                formacion++;
+                break;
+
+            default:
+                console.log(`Categoría inesperada: ${evento.categoria}`);
+        }
+    }
+
+    console.log(`Música: ${musica}`);
+    console.log(`Cultura: ${cultura}`);
+    console.log(`Deporte: ${deporte}`);
+    console.log(`Formación: ${formacion}`);
+}
+
+listarTodos(eventos);
+
+const resultado1 = filtrarEventos(eventos, 10);
+console.log(`Encontrados: ${resultado1}`);
+
+const resultado2 = filtrarEventos(eventos, 20);
+console.log(`Encontrados: ${resultado2}`);
+
+contarPorCategoria(eventos);
