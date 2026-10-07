@@ -45,3 +45,41 @@ const eventos = [
     plazas: 150
   }
 ];
+
+
+const PRECIO_BAJO = 10;
+const PLAZAS_MUCHAS = 100;
+
+console.log("--- LISTADO DE EVENTOS ---");
+
+for (const evento of eventos) {
+
+    const etiqueta = evento.precio <= PRECIO_BAJO
+        ? "económico"
+        : "premium";
+
+    console.log(`${evento.id}. ${evento.nombre} - ${etiqueta}`);
+}
+
+console.log("\n--- EVENTOS ECONÓMICOS Y CON MUCHAS PLAZAS ---");
+
+let encontrados = 0;
+
+for (let i = 0; i < eventos.length; i++) {
+
+    const evento = eventos[i];
+
+    if (
+        evento.precio <= PRECIO_BAJO &&
+        evento.plazas >= PLAZAS_MUCHAS
+    ) {
+
+        console.log(
+            `${evento.nombre} - ${evento.precio}€ - ${evento.plazas} plazas`
+        );
+
+        encontrados++;
+    }
+}
+
+console.log(`${encontrados} de ${eventos.length} eventos`);
