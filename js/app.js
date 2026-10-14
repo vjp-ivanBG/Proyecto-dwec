@@ -139,3 +139,90 @@ const resultado2 = filtrarEventos(eventos, 20);
 console.log(`Encontrados: ${resultado2}`);
 
 contarPorCategoria(eventos);
+
+//Sesión 8
+
+//listar
+function listar(lista) {
+
+    for (const evento of lista) {
+        console.log(
+            `${evento.id} - ${evento.nombre} - ${evento.categoria}`
+        );
+    }
+
+}
+
+//buscar por texto
+function buscarPorTexto(lista, texto) {
+
+    const resultado = [];
+
+    for (const evento of lista) {
+
+        if (
+            evento.nombre.toLowerCase()
+            .includes(texto.toLowerCase())
+        ) {
+            resultado.push(evento);
+        }
+
+    }
+
+    return resultado;
+}
+
+console.table(buscarPorTexto(eventos, "jazz"));
+console.table(buscarPorTexto(eventos, "festival"));
+console.table(buscarPorTexto(eventos, "fotografía"));
+
+//añadir
+function anadir(lista, elemento) {
+
+    let mayorId = 0;
+
+    for (const evento of lista) {
+
+        if (evento.id > mayorId) {
+            mayorId = evento.id;
+        }
+
+    }
+
+    elemento.id = mayorId + 1;
+
+    lista.push(elemento);
+
+    return elemento.id;
+}
+
+anadir(eventos, {
+    nombre: "Feria del Libro",
+    fecha: "2026-07-01",
+    lugar: "Plaza Mayor",
+    categoria: "Cultura",
+    precio: 0,
+    plazas: 500
+});
+
+//eliminar por ID
+function eliminarPorId(lista, id) {
+
+    for (let i = 0; i < lista.length; i++) {
+
+        if (lista[i].id === id) {
+
+            lista.splice(i, 1);
+
+            return true;
+        }
+
+    }
+
+    return false;
+}
+``
+console.log(eliminarPorId(eventos, 3)); // true
+console.log(eliminarPorId(eventos, 99)); // false
+
+
