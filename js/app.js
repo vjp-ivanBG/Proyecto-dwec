@@ -226,18 +226,17 @@ console.log(eliminarPorId(eventos, 3)); // true
 console.log(eliminarPorId(eventos, 99)); // false
 
 //estadísticas
-// estadísticas
-function estadisticas(lista) {
+function estadisticas(eventos) {
 
-    if (lista.length === 0) {
+    if (eventos.length === 0) {
         console.warn("No hay eventos");
         return;
     }
 
     let suma = 0;
-    let maximo = lista[0];
+    let maximo = eventos[0];
 
-    for (const evento of lista) {
+    for (const evento of eventos) {
 
         suma += evento.plazas;
 
@@ -246,7 +245,7 @@ function estadisticas(lista) {
         }
     }
 
-    const media = suma / lista.length;
+    const media = suma / eventos.length;
 
     console.log(`Eventos: ${lista.length}`);
     console.log(`Plazas totales: ${suma}`);
