@@ -225,4 +225,29 @@ function eliminarPorId(lista, id) {
 console.log(eliminarPorId(eventos, 3)); // true
 console.log(eliminarPorId(eventos, 99)); // false
 
+//estadísticas
+function estadisticas(lista) {
+    if (lista.length === 0) {
+        console.warn("No hay elementos");
+        return;
+    }
+
+    let suma = 0;
+    let maximo = lista[0];
+
+    for (const elemento of lista) {
+        suma += elemento.duracion;
+
+        if (elemento.duracion > maximo.duracion) {
+            maximo = elemento;
+        }
+    }
+
+    const media = suma / lista.length;
+
+    console.log(`Total: ${suma}`);
+    console.log(`Media: ${media.toFixed(1)}`);
+    console.log(`Mayor duración: ${maximo.nombre} (${maximo.duracion})`);
+}
+``
 
