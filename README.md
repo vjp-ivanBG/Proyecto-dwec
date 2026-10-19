@@ -21,5 +21,19 @@ Cada evento contiene:
 2. Abrir la terminal.
 3. Ejecutar:
 
+## Sesión 7
+1. Listar todos
+2. Filtrar
+3. Contar por categoría
+
+## Sesión 8
+1. Listar 
+2. Buscar por texto
+3. Añadir
+4. Eliminar por ID
+
+## Sesión 9 
+1. Estadísticas
+
 ```bash
 node app.js
