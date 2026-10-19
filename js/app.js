@@ -226,28 +226,31 @@ console.log(eliminarPorId(eventos, 3)); // true
 console.log(eliminarPorId(eventos, 99)); // false
 
 //estadísticas
+// estadísticas
 function estadisticas(lista) {
+
     if (lista.length === 0) {
-        console.warn("No hay elementos");
+        console.warn("No hay eventos");
         return;
     }
 
     let suma = 0;
     let maximo = lista[0];
 
-    for (const elemento of lista) {
-        suma += elemento.duracion;
+    for (const evento of lista) {
 
-        if (elemento.duracion > maximo.duracion) {
-            maximo = elemento;
+        suma += evento.plazas;
+
+        if (evento.plazas > maximo.plazas) {
+            maximo = evento;
         }
     }
 
     const media = suma / lista.length;
 
-    console.log(`Total: ${suma}`);
-    console.log(`Media: ${media.toFixed(1)}`);
-    console.log(`Mayor duración: ${maximo.nombre} (${maximo.duracion})`);
+    console.log(`Eventos: ${lista.length}`);
+    console.log(`Plazas totales: ${suma}`);
+    console.log(`Media de plazas: ${media.toFixed(1)}`);
+    console.log(`El evento con más plazas es "${maximo.nombre}" con ${maximo.plazas} plazas`);
 }
-``
 
