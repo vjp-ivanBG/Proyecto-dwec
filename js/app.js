@@ -254,39 +254,46 @@ function estadisticas(lista) {
 }
 
 //Sesión 10
-
 function crearTarjeta(evento) {
 
-    const article = document.createElement("article");
+    const tarjeta = document.createElement("article");
+    tarjeta.className = "tarjeta";
 
-    article.className = "tarjeta";
+    const titulo = document.createElement("h3");
+    titulo.textContent = evento.nombre;
 
-    article.innerHTML = `
-        <h3>${evento.nombre}</h3>
-        <p><strong>Categoría:</strong> ${evento.categoria}</p>
-        <p><strong>Lugar:</strong> ${evento.lugar}</p>
-        <p><strong>Fecha:</strong> ${evento.fecha}</p>
-        <p><strong>Precio:</strong> ${evento.precio} €</p>
-        <p><strong>Plazas:</strong> ${evento.plazas}</p>
-    `;
+    const categoria = document.createElement("p");
+    categoria.textContent = "Categoría: " + evento.categoria;
 
-    return article;
+    const lugar = document.createElement("p");
+    lugar.textContent = "Lugar: " + evento.lugar;
+
+    const fecha = document.createElement("p");
+    fecha.textContent = "Fecha: " + evento.fecha;
+
+    const precio = document.createElement("p");
+    precio.textContent = "Precio: " + evento.precio + " €";
+
+    tarjeta.append(titulo);
+    tarjeta.append(categoria);
+    tarjeta.append(lugar);
+    tarjeta.append(fecha);
+    tarjeta.append(precio);
+
+    return tarjeta;
 }
 
 function pintar(lista) {
 
-    const contenedor = document.getElementById("eventos");
-
-    contenedor.replaceChildren();
+    listado.replaceChildren();
 
     for (const evento of lista) {
-        contenedor.append(crearTarjeta(evento));
+        listado.append(crearTarjeta(evento));
     }
+
+    resumen.textContent = lista.length + " eventos";
 }
 
-pintar(eventos);
-
-console.log(document.getElementById("eventos"));
 
 //Sesión 11
 
