@@ -253,3 +253,106 @@ function estadisticas(lista) {
     console.log(`El evento con más plazas es "${maximo.nombre}" con ${maximo.plazas} plazas`);
 }
 
+//Sesión 10
+
+function crearTarjeta(evento) {
+
+    const article = document.createElement("article");
+
+    article.className = "tarjeta";
+
+    article.innerHTML = `
+        <h3>${evento.nombre}</h3>
+        <p><strong>Categoría:</strong> ${evento.categoria}</p>
+        <p><strong>Lugar:</strong> ${evento.lugar}</p>
+        <p><strong>Fecha:</strong> ${evento.fecha}</p>
+        <p><strong>Precio:</strong> ${evento.precio} €</p>
+        <p><strong>Plazas:</strong> ${evento.plazas}</p>
+    `;
+
+    return article;
+}
+
+function pintar(lista) {
+
+    const contenedor = document.getElementById("eventos");
+
+    contenedor.replaceChildren();
+
+    for (const evento of lista) {
+        contenedor.append(crearTarjeta(evento));
+    }
+}
+
+pintar(eventos);
+
+console.log(document.getElementById("eventos"));
+
+//Sesión 11
+
+    let textoBuscado = "";
+    let criterio = "ninguno";
+
+//Función ordenar
+function ordenar(lista, criterio) {
+    const copia = [...lista];
+
+    if (criterio === "nombre") {
+        copia.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    }
+
+    return copia;
+}
+
+//buscadorfunction actualizar() {
+
+    let resultado = buscarPorTexto(eventos, textoBuscado);
+
+    resultado = ordenar(resultado, criterio);
+
+    console.table(resultado);
+
+
+//Sesión 12
+
+//Cookies
+
+function guardarCookie(nombre, valor, dias) {
+
+    const segundos = dias * 24 * 60 * 60;
+    const texto = encodeURIComponent(valor);
+
+    document.cookie =
+        `${nombre}=${texto}; max-age=${segundos}; path=/`;
+}
+
+function leerCookie(nombre) {
+
+    const partes = document.cookie.split("; ");
+
+    for (const parte of partes) {
+
+        const [clave, valor] = parte.split("=");
+
+        if (clave === nombre) {
+            return decodeURIComponent(valor);
+        }
+    }
+
+    return null;
+}
+
+function elegirOrden(nuevo) {
+    criterio = nuevo;
+    guardarCookie("criterio", criterio, 30);
+    actualizar();
+}
+
+document.querySelector("#ordenNombre").addEventListener("click", () => elegirOrden("nombre"));
+document.querySelector("#ordenTiempo").addEventListener("click", () => elegirOrden("tiempo"));
+
+criterio = leerCookie("criterio") || "ninguno";
+actualizar();
+
+
+
