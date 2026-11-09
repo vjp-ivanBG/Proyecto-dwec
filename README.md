@@ -35,5 +35,18 @@ Cada evento contiene:
 ## Sesión 9 
 1. Estadísticas
 
+## Sesión 10
+1. Crear tarjetas
+2. pintar tarjetas
+
+## Sesión 11
+1. Reutilizar buscarportexto
+2. Ordenar el buscarportexto
+
+## Sesión 12
+1. guardarCookie
+2. leerCookie
+3. elegirOrden
+
 ```bash
 node app.js

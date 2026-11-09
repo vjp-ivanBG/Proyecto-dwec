@@ -225,7 +225,7 @@ function eliminarPorId(lista, id) {
 console.log(eliminarPorId(eventos, 3)); // true
 console.log(eliminarPorId(eventos, 99)); // false
 
-//estadísticas
+//Sesion 9 estadísticas
 function estadisticas(lista) {
 
     if (lista.length === 0) {
@@ -254,6 +254,7 @@ function estadisticas(lista) {
 }
 
 //Sesión 10
+//Crear tarjeta
 const listado = document.querySelector("#listado");
 const resumen = document.querySelector("#resumen");
 function crearTarjeta(evento) {
@@ -285,6 +286,7 @@ function crearTarjeta(evento) {
     return tarjeta;
 }
 
+//pintar tarjetas
 function pintar(lista) {
 
     listado.replaceChildren();
@@ -299,6 +301,7 @@ function pintar(lista) {
 
 
 //Sesión 11
+//reutilizar buscarporTexto
 
     let textoBuscado = "";
     let criterio = "ninguno";
@@ -322,8 +325,6 @@ function ordenar(lista, criterio) {
 
     return copia;
 }
-
-//buscadorfunction actualizar() {
 
 function actualizar() {
 
