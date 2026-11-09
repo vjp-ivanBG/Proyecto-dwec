@@ -254,6 +254,8 @@ function estadisticas(lista) {
 }
 
 //Sesión 10
+const listado = document.querySelector("#listado");
+const resumen = document.querySelector("#resumen");
 function crearTarjeta(evento) {
 
     const tarjeta = document.createElement("article");
@@ -292,6 +294,7 @@ function pintar(lista) {
     }
 
     resumen.textContent = lista.length + " eventos";
+    pintar(eventos);
 }
 
 
@@ -299,6 +302,15 @@ function pintar(lista) {
 
     let textoBuscado = "";
     let criterio = "ninguno";
+
+    document.querySelector("#buscador")
+    .addEventListener("input", (e) => {
+
+        textoBuscado = e.target.value;
+
+        actualizar();
+
+    });
 
 //Función ordenar
 function ordenar(lista, criterio) {
@@ -313,11 +325,15 @@ function ordenar(lista, criterio) {
 
 //buscadorfunction actualizar() {
 
+function actualizar() {
+
     let resultado = buscarPorTexto(eventos, textoBuscado);
 
     resultado = ordenar(resultado, criterio);
 
-    console.table(resultado);
+    pintar(resultado);
+
+}
 
 
 //Sesión 12
@@ -356,9 +372,11 @@ function elegirOrden(nuevo) {
 }
 
 document.querySelector("#ordenNombre").addEventListener("click", () => elegirOrden("nombre"));
-document.querySelector("#ordenTiempo").addEventListener("click", () => elegirOrden("tiempo"));
+document.querySelector("#ordenNumero").addEventListener("click", () => elegirOrden("tiempo"));
 
 criterio = leerCookie("criterio") || "ninguno";
+
+
 actualizar();
 
 
