@@ -294,8 +294,8 @@ function pintar(lista) {
     }
 
     resumen.textContent = lista.length + " eventos";
-    pintar(eventos);
 }
+
 
 
 //Sesión 11
